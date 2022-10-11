@@ -1,0 +1,28 @@
+.navigation {
+	margin: 1rem;
+	display: flex;
+	justify-content: space-between;
+}
+
+.navigation > ul {
+	display: flex;
+	margin: 0;
+	padding: 0;
+}
+
+.navigation ul li {
+	margin-right: 1rem;
+	list-style: none;
+}
+
+.navigation a.active {
+	text-decoration: underline;
+	font-weight: bold ;
+}
+
+.navigation  a {
+	color: var(--secondary);
+	text-decoration: none;;
+}
+
+
