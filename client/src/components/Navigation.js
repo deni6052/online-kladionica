@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
+import Button from "./Button";
 import "./Navigation.css";
 
-export default function Navigation() {
+export default function Navigation({ isAuthenticated, user, logout }) {
   return (
     <nav className="card navigation">
       <ul>
@@ -22,18 +23,29 @@ export default function Navigation() {
           </NavLink>
         </li>
       </ul>
-      <ul>
-        <li>
-          <NavLink end to="/login">
-            Login
-          </NavLink>
-        </li>
-        <li>
-          <NavLink end to="/Register">
-            Register
-          </NavLink>
-        </li>
-      </ul>
+      {isAuthenticated ? (
+        <ul>
+          <li>{user.fullName}</li>
+          <li>${user.currentBalance.toFixed(2)}</li>
+
+          <li>
+            <Button label="Logout" clickHandler={() => logout()} />
+          </li>
+        </ul>
+      ) : (
+        <ul>
+          <li>
+            <NavLink end to="/login">
+              Login
+            </NavLink>
+          </li>
+          <li>
+            <NavLink end to="/register">
+              Register
+            </NavLink>
+          </li>
+        </ul>
+      )}
     </nav>
   );
 }

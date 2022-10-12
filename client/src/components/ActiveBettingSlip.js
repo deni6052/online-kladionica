@@ -22,9 +22,9 @@ export default function ActiveBettingSlip(props) {
       <p>{props.bettingSlip.totalOdds}</p>
 
       <h4>Potential winnings</h4>
-      <p>{props.bettingSlip.potentialWinnings}</p>
+      <p>${props.bettingSlip.potentialWinnings}</p>
       <TextInput
-        label="Betting amount"
+        label="Betting amount ($)"
         value={props.bettingSlip.betAmount}
         onChange={(e) => props.updateBettingAmount(e.target.value)}
       />

@@ -1,6 +1,10 @@
 import logo from "./logo.svg";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
-
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  redirect,
+} from "react-router-dom";
 import "./App.css";
 import Dashboard from "./views/Dashboard";
 import BettingSlips from "./views/BettingSlips";
@@ -10,6 +14,7 @@ import SportEvents from "./views/SportEvents";
 import Navigation from "./components/Navigation";
 import http from "./http";
 import React, { useState } from "react";
+import Register from "./views/Register";
 
 function App() {
   const [user, setUser] = useState();
@@ -27,10 +32,17 @@ function App() {
     http.defaults.headers.Authorization = `Bearer ${token}`;
     await getLoggedInUser();
   };
+
   const getLoggedInUser = async () => {
     const { data: user } = await http.get("/api/users/me");
     setUser(user);
     setIsAuthenticated(true);
+  };
+
+  const logout = async () => {
+    setUser(null);
+    setIsAuthenticated(false);
+    delete http.defaults.headers.Authorization;
   };
 
   React.useEffect(() => {
@@ -39,7 +51,11 @@ function App() {
 
   return (
     <Router>
-      <Navigation />
+      <Navigation
+        isAuthenticated={isAuthenticated}
+        user={user}
+        logout={logout}
+      />
 
       {/* <div>
         <p>⚽🎾</p>
@@ -52,6 +68,8 @@ function App() {
           <Route exact path="/" element={<Dashboard />}></Route>
           <Route path="/betting-slips" element={<BettingSlips />} />
           <Route path="/login" element={<Login setToken={setToken} />} />
+          <Route path="/register" element={<Register setToken={setToken} />} />
+
           <Route
             path="/manage-events"
             element={<SportEvents setToken={setToken} />}

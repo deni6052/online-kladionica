@@ -26,6 +26,7 @@ export default function Register() {
   return (
     <div className="login">
       <form className="card" onSubmit={handleSubmit}>
+        <h3>Register </h3>
         <TextInput
           label="Full name"
           type="text"

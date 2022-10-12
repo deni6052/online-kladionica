@@ -6,8 +6,7 @@ export default function BettingSlipItem({
   return (
     <p className="card betting-slip-item">
       <span>
-        <b>Bet amount:</b>
-        {betAmount.toFixed(2)}
+        <b>Bet amount:</b>${betAmount.toFixed(2)}
       </span>
       <span>
         {" "}
@@ -16,8 +15,7 @@ export default function BettingSlipItem({
       </span>
       <span>
         {" "}
-        <b>Potential winnings:</b>
-        {potentialWinnings.toFixed(2)}
+        <b>Potential winnings:</b>${potentialWinnings.toFixed(2)}
       </span>
       <span>
         {" "}

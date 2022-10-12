@@ -9,7 +9,10 @@ module.exports = (router) => {
     handler: async ({ input, db, apiError }) => {
       const userId = input.user.id;
 
-      const user = await getOneUser({ id: userId });
+      const user = await getOneUser({ id: userId }, [
+        "fullName",
+        "currentBalance",
+      ]);
 
       return user;
     },
