@@ -12,7 +12,10 @@
     "body-parser": "^1.20.1",
     "cors": "^2.8.5",
     "express": "^4.18.2",
+    "express-jwt": "^7.7.5",
+    "jsonwebtoken": "^8.5.1",
     "knex": "^2.3.0",
+    "knex-stringcase": "^1.4.6",
     "sqlite3": "^5.1.2"
   }
 }
