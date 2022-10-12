@@ -1,15 +1,21 @@
-const db = require('./libs/knex');
+const db = require("./libs/knex");
 
-const express = require('express');
-const bodyParser = require('body-parser')
+const express = require("express");
+const bodyParser = require("body-parser");
 const app = express();
+const cors = require("cors");
+const { jwtMiddleware } = require("./libs/jwt");
 
-app.use(bodyParser.json())
+app.use(cors());
+app.use(bodyParser.json());
+// app.use(jwtMiddleware);
 
-require('./modules/auth/api')(app);
-require('./modules/sport_event/api')(app);
+require("./modules/auth/api")(app);
+require("./modules/sport_event/api")(app);
+require("./modules/betting_slip/api")(app);
+require("./modules/user/api")(app);
 
-app.listen(3000);
+app.listen(4200);
 // const { seed } = require('./libs/knex/db-seeder');
 
 // seed()
