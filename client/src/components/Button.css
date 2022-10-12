@@ -1,0 +1,29 @@
+.button {
+	padding: 0.5rem;
+	border-radius: 8px;
+	background: none;
+	border: none;
+	font-weight: bold;
+	height: 42px;
+	
+}
+
+button:hover {
+	cursor: pointer;
+	filter: brightness(1.25);
+}
+
+button:disabled,
+button[disabled]{
+	filter: brightness(0.7);
+
+}
+.button.primary {
+	background-color: var(--primary);
+	color: white;
+}
+
+.button.secondary {
+	background-color: var(--secondary);
+	color: white;
+}

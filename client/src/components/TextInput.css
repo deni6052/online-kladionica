@@ -1,0 +1,16 @@
+.app-input {
+	border-radius: 8px;
+	height: 42px;
+	width: 100%;
+	border: 1px solid black;
+	margin-bottom: 1rem;
+	margin-top: 0.25rem;
+	padding: 0.25rem;
+	box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+input.app-input:invalid {
+	border-color: red;
+}
