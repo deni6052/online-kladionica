@@ -1,0 +1,14 @@
+.sport-event {
+	display:  flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 1rem;
+}
+
+.sport-event h3 {
+	margin: 0;
+}
+
+.sport-event-buttons button {
+	margin-left: 0.5rem;
+}

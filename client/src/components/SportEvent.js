@@ -1,35 +1,31 @@
-import React from 'react'
+import React from "react";
+import Button from "./Button";
+import "./SportEvent.css";
 
-export default function SportEvent() {
-	return (
-		<div>SportEvent</div>
-	)
+export default function SportEvent(props) {
+  const event = props.event;
+
+  return (
+    <div className="sport-event card">
+      <h3>
+        {" "}
+        {event.firstCompetitor} - {event.secondCompetitor}
+      </h3>
+      <div className="sport-event-buttons">
+        {event.outcomes.map((outcome, i) => {
+          return (
+            <Button
+              key={i}
+              label={`${outcome.label} (${outcome.odds.toFixed(2)})`}
+              color="primary"
+              type="button"
+              clickHandler={() =>
+                props.upsertBettingSlipEvent(props.event, outcome)
+              }
+            ></Button>
+          );
+        })}
+      </div>
+    </div>
+  );
 }
-
-
-//     {
-//         "id": 5,
-//         "first_competitor": "Balun Split",
-//         "second_competitor": "Balun Solin",
-//         "first_score": null,
-//         "second_score": null,
-//         "sport_outcome_id": null,
-//         "sport_id": 1,
-//         "outcomes": [
-//             {
-//                 "sport_outcome_id": 1,
-//                 "label": "1",
-//                 "odds": 10
-//             },
-//             {
-//                 "sport_outcome_id": 2,
-//                 "label": "x",
-//                 "odds": 1.5
-//             },
-//             {
-//                 "sport_outcome_id": 3,
-//                 "label": "2",
-//                 "odds": 1
-//             }
-//         ]
-//     }

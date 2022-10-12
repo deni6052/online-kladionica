@@ -6,8 +6,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  --primary: #44444C;
+  --box-shadow: rgba(149, 157, 165, 0.35) 0px 8px 24px;
+  --primary: #7e7e87;
   --secondary: #0B0909;
 }
 
@@ -21,4 +21,15 @@ code {
   border-radius: 16px;
   border: 1px solid white;
   box-shadow: var(--box-shadow);
+}
+
+.page {
+  margin: 0 1rem;
+	display: grid;
+	column-gap: 1rem;
+	grid-template-columns: 6fr 4fr;
+
+}
+h1, h2, h3 {
+  margin:0;
 }
