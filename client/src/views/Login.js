@@ -1,36 +1,41 @@
-import React, { Component } from 'react'
+import React, { useState } from "react";
+import Button from "../components/Button";
+import TextInput from "../components/TextInput";
+import http from "../http";
+import "./Login.css";
 
-export default class Login extends Component {
+export default function Login({ setToken }) {
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [error, setError] = useState();
 
-	constructor(props) {
-		super(props);
-		this.state = {
-			username: '',
-			password: ''
-		}
-		// this.handleSubmit = this.handleSubmit.bind(this);
-	}
-	handleSubmit(event) {
-		event.preventDefault();
-
-		let formData = new FormData(event.currentTarget);
-		let username = formData.get("username");
-
-		console.log(username)
-
-	}
-	render() {
-		return (
-			<div>
-				<p>You must log in to view the page at </p>
-
-				<form onSubmit={this.handleSubmit}>
-					<label>
-						Username: <input name="username" type="text" />
-					</label>{" "}
-					<button type="submit">Login</button>
-				</form>
-			</div>
-		)
-	}
+  const handleSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      const { data } = await http.post("/api/login", { email, password });
+      setToken(data.token);
+    } catch (error) {
+      setError(error.response.data.message);
+    }
+  };
+  return (
+    <div className="login">
+      <form className="card" onSubmit={handleSubmit}>
+        <TextInput
+          label="Email"
+          type="email"
+          onChange={(e) => setEmail(e.target.value)}
+          required={true}
+        ></TextInput>
+        <TextInput
+          label="Password"
+          type="password"
+          onChange={(e) => setPassword(e.target.value)}
+          required={true}
+        ></TextInput>
+        <Button type="submit" color="secondary" label="Login" />
+        {<p>{error}</p>}
+      </form>
+    </div>
+  );
 }
