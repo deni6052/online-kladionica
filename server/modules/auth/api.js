@@ -2,6 +2,7 @@
 const { createUser, getOneUser } = require("../user/methods");
 const { api } = require("../../libs/simple-api");
 const { signToken } = require("../../libs/jwt");
+const middleware = require("./middleware");
 /**
  *
  * @param {*} router
@@ -13,6 +14,7 @@ module.exports = (router) => {
     method: "post",
     path: "/api/auth/login",
     auth: false,
+    middleware: [middleware.login],
     handler: async ({ input, apiError }) => {
       const { email, password } = input.body;
 
@@ -30,6 +32,8 @@ module.exports = (router) => {
     method: "post",
     path: "/api/auth/register",
     auth: false,
+    middleware: [middleware.register],
+
     handler: async ({ input, apiError }) => {
       const { email, password } = input.body;
 
