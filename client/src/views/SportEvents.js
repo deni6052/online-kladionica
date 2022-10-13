@@ -51,7 +51,7 @@ export default function SportEvents({ onEventsPlayed }) {
       <div className="card sport-events-additional">
         <h3>Additional actions</h3>
         <Button
-          clickHandler={() => playEvents()}
+          onClick={() => playEvents()}
           label="Resolve events"
           color="primary"
         />

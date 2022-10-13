@@ -3,6 +3,7 @@ import TextInput from "./shared/TextInput";
 import "./SportEventForm.css";
 import Button from "./shared/Button";
 import http from "../libs/http";
+import { toast } from "react-toastify";
 
 export default function SportEventForm({ outcomes, sportId }) {
   const getInitialEvent = (outcomes) => {
@@ -50,6 +51,7 @@ export default function SportEventForm({ outcomes, sportId }) {
     event.preventDefault();
     await http.post("/api/sport_events", newEvent);
     setNewEvent(getInitialEvent(outcomes));
+    toast("Event created successfully");
   };
 
   return (

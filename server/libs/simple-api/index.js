@@ -15,6 +15,8 @@ const { jwtMiddleware } = require("../jwt");
  * @param {'get' | 'post' | 'put' | 'delete'} context.method
  * @param {string} context.path
  * @param {number} context.status
+ * @param {boolean} auth
+ * @param {import('express').NextFunction[]} middleware
  * @param { (context: ApiContext)=> any}context.handler
  */
 module.exports.api = ({

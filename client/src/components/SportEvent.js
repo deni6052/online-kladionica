@@ -29,7 +29,7 @@ export default function SportEvent({
               label={`${outcome.label} (${outcome.odds.toFixed(2)})`}
               color="primary"
               type="button"
-              clickHandler={() => upsertBettingSlipEvent(event, outcome)}
+              onClick={() => upsertBettingSlipEvent(event, outcome)}
             ></Button>
           );
         })}

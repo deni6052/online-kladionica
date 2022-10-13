@@ -4,7 +4,7 @@ import "./Button.css";
 export default function Button({
   color,
   type = "button",
-  clickHandler,
+  onClick,
   label,
   disabled,
 }) {
@@ -12,7 +12,7 @@ export default function Button({
     <button
       className={"button " + color}
       type={type || "button"}
-      onClick={clickHandler}
+      onClick={onClick}
       disabled={disabled}
     >
       {label}

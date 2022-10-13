@@ -38,12 +38,12 @@ export default function ActiveBettingSlip({
         disabled={bettingSlip.events.length < 1 || bettingSlip.betAmount < 1}
         label="Place the bet!"
         color="secondary"
-        clickHandler={() => createBettingSlip()}
+        onClick={() => createBettingSlip()}
       />
       <Button
         label="Clear the slip"
         color="primary"
-        clickHandler={() => clearBettingSlip()}
+        onClick={() => clearBettingSlip()}
       />
       {bettingSlip.error && <p>{bettingSlip.error}</p>}
     </div>

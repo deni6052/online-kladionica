@@ -71,6 +71,7 @@ export default function Dashboard({ onBet, isAuthenticated }) {
       potentialWinnings: calculateWinnings(value, bettingSlip.totalOdds),
     });
   };
+
   const clearBettingSlip = () => {
     setBettingSlip(getInitialBettingState());
   };
@@ -111,6 +112,7 @@ export default function Dashboard({ onBet, isAuthenticated }) {
               key={i}
               event={event}
               upsertBettingSlipEvent={upsertBettingSlipEvent}
+              preview={!isAuthenticated}
             />
           );
         })}

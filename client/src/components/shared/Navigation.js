@@ -33,7 +33,7 @@ export default function Navigation({ isAuthenticated, user, logout }) {
           <li>${user.currentBalance.toFixed(2)}</li>
 
           <li>
-            <Button label="Logout" clickHandler={() => logout()} />
+            <Button label="Logout" onClick={() => logout()} />
           </li>
         </ul>
       ) : (

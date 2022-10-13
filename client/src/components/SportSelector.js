@@ -31,7 +31,7 @@ export default function SportSelector({ selectHandler }) {
           key={i}
           label={sport.name}
           color={selectedSport === sport.id ? "secondary" : ""}
-          clickHandler={() => selectSport(sport.id)}
+          onClick={() => selectSport(sport.id)}
         ></Button>
       ))}
     </div>
