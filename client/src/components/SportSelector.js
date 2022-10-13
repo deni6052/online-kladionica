@@ -7,16 +7,17 @@ export default function SportSelector({ selectHandler }) {
   const [sports, setSports] = useState([]);
 
   useEffect(() => {
-    const getSports = async () => {
-      const { data } = await http.get("/api/sports");
-      setSports(data);
-      if (!selectedSport) {
-        setSelectedSport(data[0].id);
-        selectHandler(data[0].id);
-      }
-    };
     getSports();
-  }, [selectHandler, selectedSport]);
+  }, []);
+
+  const getSports = async () => {
+    const { data } = await http.get("/api/sports");
+    setSports(data);
+    if (!selectedSport) {
+      setSelectedSport(data[0].id);
+      selectHandler(data[0].id);
+    }
+  };
 
   const selectSport = (sportId) => {
     selectHandler(sportId);

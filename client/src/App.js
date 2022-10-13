@@ -4,18 +4,21 @@ import Dashboard from "./views/Dashboard";
 import BettingSlips from "./views/BettingSlips";
 import Login from "./views/Login";
 import SportEvents from "./views/SportEvents";
-
 import Navigation from "./components/shared/Navigation";
 import http from "./libs/http";
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import Register from "./views/Register";
 import GuardedRoute from "./guards/GuardedRoute";
-
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 function App() {
   const [user, setUser] = useState();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    checkToken();
+  }, []);
 
   const setToken = async (token) => {
     localStorage.setItem("token", token);
@@ -46,10 +49,6 @@ function App() {
     localStorage.removeItem("token");
     delete http.defaults.headers.Authorization;
   };
-
-  React.useEffect(() => {
-    checkToken();
-  }, []);
 
   return (
     <Router>
