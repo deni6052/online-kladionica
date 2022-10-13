@@ -3,7 +3,7 @@ import Button from "../components/Button";
 import TextInput from "../components/TextInput";
 import http from "../libs/http";
 import { useNavigate } from "react-router-dom";
-
+import { toast } from "react-toastify";
 export default function Register() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -22,6 +22,7 @@ export default function Register() {
       });
       navigate("/login");
       setError("");
+      toast("You can now log in");
     } catch (error) {
       setError(error.response.data.message);
     }

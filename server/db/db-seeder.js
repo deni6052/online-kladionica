@@ -137,13 +137,13 @@ const seedDb = async () => {
 
   await db.batchInsert("sport_event", [
     {
-      first_competitor: "Balun Split",
-      second_competitor: "Balun Solin",
+      first_competitor: "Team 1",
+      second_competitor: "Team 2",
       sport_id: 1,
     },
     {
-      first_competitor: "Balun Rijeka",
-      second_competitor: "Loptanje Zagreb",
+      first_competitor: "Team 3",
+      second_competitor: "Team 4",
       sport_id: 1,
     },
     {

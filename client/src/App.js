@@ -11,6 +11,8 @@ import React, { useState } from "react";
 import Register from "./views/Register";
 import GuardedRoute from "./guards/GuardedRoute";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function App() {
   const [user, setUser] = useState();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -93,6 +95,7 @@ function App() {
           <Route path="/register" element={<Register setToken={setToken} />} />
         </Routes>
       </main>
+      <ToastContainer theme="dark" />
     </Router>
   );
 }

@@ -5,6 +5,7 @@ import SportEventForm from "../components/SportEventForm";
 import SportSelector from "../components/SportSelector";
 import http from "../libs/http";
 import "./SportEvents.css";
+import { toast } from "react-toastify";
 
 export default function SportEvents({ onEventsPlayed }) {
   const [outcomes, setOutcomes] = React.useState([]);
@@ -39,6 +40,7 @@ export default function SportEvents({ onEventsPlayed }) {
     await http.post("/api/sport_events/play");
     getEvents(selectedSport);
     onEventsPlayed();
+    toast("All events resolved");
   };
   return (
     <div className="page">

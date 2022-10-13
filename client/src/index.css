@@ -9,6 +9,7 @@ body {
   --box-shadow: rgba(149, 157, 165, 0.35) 0px 8px 24px;
   --primary: #7e7e87;
   --secondary: #0B0909;
+  --toastify-color-progress-dark: white
 }
 
 code {
@@ -33,3 +34,5 @@ code {
 h1, h2, h3 {
   margin:0;
 }
+
+

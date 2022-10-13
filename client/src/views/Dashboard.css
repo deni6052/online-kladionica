@@ -9,3 +9,7 @@ a h3 {
 	color: black;
 	text-decoration: none;
 }
+
+.betting-slips h3.card {
+	margin-top: 0;
+}

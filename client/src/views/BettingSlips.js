@@ -31,6 +31,9 @@ export default function BettingSlips() {
 
   return (
     <div className="page betting-slips">
+      {bettingSlips.length < 1 && (
+        <h3 className="card">You haven't placed any bets</h3>
+      )}
       <div>
         {bettingSlips.map((slip, i) => {
           return (

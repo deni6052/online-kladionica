@@ -1,11 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import ActiveBettingSlip from "../components/ActiveBettingSlip";
-import Button from "../components/Button";
 import SportEvent from "../components/SportEvent";
 import SportSelector from "../components/SportSelector";
 import http from "../libs/http";
 import "./Dashboard.css";
+import { toast } from "react-toastify";
 
 const getInitialBettingState = () => {
   return {
@@ -90,6 +90,7 @@ export default function Dashboard({ onBet, isAuthenticated }) {
       await http.post(`/api/betting_slips`, data);
       clearBettingSlip();
       onBet();
+      toast("Bet successfully placed");
     } catch (error) {
       if (error.response.status === 400) {
         setBettingSlip({ ...bettingSlip, error: error.response.data.message });
@@ -101,7 +102,7 @@ export default function Dashboard({ onBet, isAuthenticated }) {
     <div className="dashboard">
       <div className="sport-event-list">
         <SportSelector selectHandler={getEvents}></SportSelector>
-
+        {events.length < 1 && <h3>No events currently active</h3>}
         {events.map((event, i) => {
           return (
             <SportEvent
