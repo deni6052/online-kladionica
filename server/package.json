@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js",
+    "preseed-db": "[ ! -e db/online-kladionica.sqlite ] || rm db/online-kladionica.sqlite",
+    "seed-db": "node db/db-seeder.js "
   },
   "author": "",
   "license": "ISC",
@@ -17,5 +20,8 @@
     "knex": "^2.3.0",
     "knex-stringcase": "^1.4.6",
     "sqlite3": "^5.1.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
   }
 }

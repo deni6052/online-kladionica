@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import TextInput from "../components/TextInput";
-import http from "../http";
+import http from "../libs/http";
 import "./Login.css";
 
 export default function Login({ setToken }) {
@@ -14,7 +14,7 @@ export default function Login({ setToken }) {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      const { data } = await http.post("/api/login", { email, password });
+      const { data } = await http.post("/api/auth/login", { email, password });
       setToken(data.token);
       navigate("/");
     } catch (error) {
@@ -29,6 +29,7 @@ export default function Login({ setToken }) {
         <TextInput
           label="Email"
           type="email"
+          pattern=".+@globex\.com"
           onChange={(e) => setEmail(e.target.value)}
           required={true}
         ></TextInput>

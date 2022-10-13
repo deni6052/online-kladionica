@@ -12,16 +12,20 @@ export default function Navigation({ isAuthenticated, user, logout }) {
             Home
           </NavLink>
         </li>
-        <li>
-          <NavLink end to="/betting-slips">
-            My betting slips
-          </NavLink>
-        </li>
-        <li>
-          <NavLink end to="/manage-events">
-            Manage sport events
-          </NavLink>
-        </li>
+        {isAuthenticated && (
+          <li>
+            <NavLink end to="/betting-slips">
+              My betting slips
+            </NavLink>
+          </li>
+        )}
+        {isAuthenticated && (
+          <li>
+            <NavLink end to="/manage-events">
+              Manage sport events
+            </NavLink>
+          </li>
+        )}
       </ul>
       {isAuthenticated ? (
         <ul>

@@ -8,7 +8,13 @@
 .sport-event h3 {
 	margin: 0;
 }
-
+.sport-event-buttons {
+	display: flex;
+	align-items: center;
+}
 .sport-event-buttons button {
 	margin-left: 0.5rem;
+}
+.sport-event-buttons input {
+margin: 0;
 }

@@ -1,5 +1,5 @@
 "use strict";
-const { getUserByEmail, createUser } = require("../user/methods");
+const { createUser, getOneUser } = require("../user/methods");
 const { api } = require("../../libs/simple-api");
 const { signToken } = require("../../libs/jwt");
 /**
@@ -11,12 +11,12 @@ module.exports = (router) => {
   api({
     router,
     method: "post",
-    path: "/api/login",
+    path: "/api/auth/login",
     auth: false,
     handler: async ({ input, apiError }) => {
       const { email, password } = input.body;
 
-      const user = await getUserByEmail(email);
+      const user = await getOneUser({ email });
       if (!user || password !== user.password) {
         throw apiError({ status: 401, message: "Invalid credentials" });
       }
@@ -28,7 +28,7 @@ module.exports = (router) => {
   api({
     router,
     method: "post",
-    path: "/api/register",
+    path: "/api/auth/register",
     auth: false,
     handler: async ({ input, apiError }) => {
       const { email, password } = input.body;

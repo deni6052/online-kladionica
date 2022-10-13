@@ -1,8 +1,7 @@
-const db = require("./index");
+const db = require("../libs/knex/index");
 
-console.log("db");
 // Create users
-module.exports.createDb = async () => {
+const createDb = async () => {
   await db.schema.createTable("user", function (table) {
     table.primary("id");
     table.increments("id");
@@ -31,13 +30,6 @@ module.exports.createDb = async () => {
 
     table.foreign("sport_id").references("id").inTable("sport");
   });
-
-  // // Sport competitor
-  // await db.schema.createTable('sport_competitor', function (table) {
-  // 	table.primary('id');
-  // 	table.increments('id');
-  // 	table.string('name');
-  // })
 
   // Sport event
   await db.schema.createTable("sport_event", function (table) {
@@ -95,7 +87,7 @@ module.exports.createDb = async () => {
   });
 };
 
-module.exports.seedDb = async () => {
+const seedDb = async () => {
   // Seed users
   await db.batchInsert("user", [
     {
@@ -117,17 +109,17 @@ module.exports.seedDb = async () => {
 
   await db.batchInsert("sport_outcome", [
     {
-      label: "1",
+      label: "Home",
       result_type: "first_win",
       sport_id: 1,
     },
     {
-      label: "x",
+      label: "Draw",
       result_type: "draw",
       sport_id: 1,
     },
     {
-      label: "2",
+      label: "Away",
       result_type: "second_win",
       sport_id: 1,
     },
@@ -233,5 +225,10 @@ module.exports.seedDb = async () => {
   ]);
 };
 
-this.createDb();
-this.seedDb();
+async function main() {
+  await createDb();
+  await seedDb();
+  process.exit();
+}
+
+main();

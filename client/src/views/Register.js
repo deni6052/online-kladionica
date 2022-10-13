@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Button from "../components/Button";
 import TextInput from "../components/TextInput";
-import http from "../http";
+import http from "../libs/http";
+import { useNavigate } from "react-router-dom";
 
 export default function Register() {
   const [email, setEmail] = useState();
@@ -9,15 +10,17 @@ export default function Register() {
   const [fullName, setFullName] = useState();
 
   const [error, setError] = useState();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      await http.post("/api/register", {
+      await http.post("/api/auth/register", {
         email,
         password,
         fullName,
       });
+      navigate("/login");
       setError("");
     } catch (error) {
       setError(error.response.data.message);
@@ -36,6 +39,7 @@ export default function Register() {
         <TextInput
           label="Email"
           type="email"
+          pattern=".+@globex\.com"
           onChange={(e) => setEmail(e.target.value)}
           required={true}
         ></TextInput>

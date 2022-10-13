@@ -1,10 +1,11 @@
 import React from "react";
 import "./BettingSlipItem.css";
 export default function BettingSlipItem({
-  bettingSlip: { betAmount, totalOdds, potentialWinnings, status },
+  bettingSlip: { betAmount, totalOdds, potentialWinnings, status, id },
+  onClick,
 }) {
   return (
-    <p className="card betting-slip-item">
+    <p className="card betting-slip-item" onClick={() => onClick(id)}>
       <span>
         <b>Bet amount:</b>${betAmount.toFixed(2)}
       </span>

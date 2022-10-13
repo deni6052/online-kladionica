@@ -4,3 +4,8 @@
 	column-gap: 1rem;
 	grid-template-columns: 6fr 4fr;
 }
+
+a h3 {
+	color: black;
+	text-decoration: none;
+}

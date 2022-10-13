@@ -1,10 +1,4 @@
-import logo from "./logo.svg";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  redirect,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Dashboard from "./views/Dashboard";
 import BettingSlips from "./views/BettingSlips";
@@ -12,9 +6,10 @@ import Login from "./views/Login";
 import SportEvents from "./views/SportEvents";
 
 import Navigation from "./components/Navigation";
-import http from "./http";
+import http from "./libs/http";
 import React, { useState } from "react";
 import Register from "./views/Register";
+import GuardedRoute from "./guards/GuardedRoute";
 
 function App() {
   const [user, setUser] = useState();
@@ -42,6 +37,7 @@ function App() {
   const logout = async () => {
     setUser(null);
     setIsAuthenticated(false);
+    localStorage.removeItem("token");
     delete http.defaults.headers.Authorization;
   };
 
@@ -56,24 +52,45 @@ function App() {
         user={user}
         logout={logout}
       />
-
-      {/* <div>
-        <p>⚽🎾</p>
-        <button>Login</button>
-        <br />
-        <button>Logout</button>
-      </div> */}
       <main>
         <Routes>
-          <Route exact path="/" element={<Dashboard />}></Route>
-          <Route path="/betting-slips" element={<BettingSlips />} />
-          <Route path="/login" element={<Login setToken={setToken} />} />
-          <Route path="/register" element={<Register setToken={setToken} />} />
+          <Route
+            exact
+            path="/"
+            element={
+              <Dashboard
+                onBet={getLoggedInUser}
+                isAuthenticated={isAuthenticated}
+              />
+            }
+          ></Route>
 
           <Route
+            exact
+            path="/betting-slips"
+            element={<GuardedRoute isAuthenticated={isAuthenticated} />}
+          >
+            <Route exact path="/betting-slips" element={<BettingSlips />} />
+          </Route>
+          <Route
+            exact
             path="/manage-events"
-            element={<SportEvents setToken={setToken} />}
-          />
+            element={<GuardedRoute isAuthenticated={isAuthenticated} />}
+          >
+            <Route
+              exact
+              path="/manage-events"
+              element={
+                <SportEvents
+                  setToken={setToken}
+                  onEventsPlayed={getLoggedInUser}
+                />
+              }
+            />
+          </Route>
+
+          <Route path="/login" element={<Login setToken={setToken} />} />
+          <Route path="/register" element={<Register setToken={setToken} />} />
         </Routes>
       </main>
     </Router>

@@ -1,33 +1,11 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import ActiveBettingSlip from "../components/ActiveBettingSlip";
 import Button from "../components/Button";
 import SportEvent from "../components/SportEvent";
-import http from "../http";
+import SportSelector from "../components/SportSelector";
+import http from "../libs/http";
 import "./Dashboard.css";
-
-function DashboardSportSelect(props) {
-  const [selectedSport, setSelectedSport] = React.useState(1);
-
-  const selectSport = (sportId) => {
-    props.selectHandler(sportId);
-    setSelectedSport(sportId);
-  };
-
-  return (
-    <div className="card">
-      <Button
-        label="Football"
-        color={selectedSport === 1 ? "secondary" : ""}
-        clickHandler={() => selectSport(1)}
-      ></Button>
-      <Button
-        label="Tennis"
-        color={selectedSport === 2 ? "secondary" : ""}
-        clickHandler={() => selectSport(2)}
-      ></Button>
-    </div>
-  );
-}
 
 const getInitialBettingState = () => {
   return {
@@ -39,7 +17,7 @@ const getInitialBettingState = () => {
   };
 };
 
-export default function Dashboard() {
+export default function Dashboard({ onBet, isAuthenticated }) {
   const [events, setEvents] = React.useState([]);
   const [bettingSlip, setBettingSlip] = React.useState(
     getInitialBettingState()
@@ -49,10 +27,6 @@ export default function Dashboard() {
     const { data } = await http.get(`/api/sports/${sportId}/sport_events`);
     setEvents(data);
   };
-
-  React.useEffect(() => {
-    getEvents(1);
-  }, []);
 
   const calculateTotalOdds = (events) => {
     return events
@@ -115,6 +89,7 @@ export default function Dashboard() {
     try {
       await http.post(`/api/betting_slips`, data);
       clearBettingSlip();
+      onBet();
     } catch (error) {
       if (error.response.status === 400) {
         setBettingSlip({ ...bettingSlip, error: error.response.data.message });
@@ -125,7 +100,7 @@ export default function Dashboard() {
   return (
     <div className="dashboard">
       <div className="sport-event-list">
-        <DashboardSportSelect selectHandler={getEvents}></DashboardSportSelect>
+        <SportSelector selectHandler={getEvents}></SportSelector>
 
         {events.map((event, i) => {
           return (
@@ -137,12 +112,20 @@ export default function Dashboard() {
           );
         })}
       </div>
-      <ActiveBettingSlip
-        bettingSlip={bettingSlip}
-        clearBettingSlip={clearBettingSlip}
-        createBettingSlip={createBettingSlip}
-        updateBettingAmount={updateBettingAmount}
-      ></ActiveBettingSlip>
+      {isAuthenticated ? (
+        <ActiveBettingSlip
+          bettingSlip={bettingSlip}
+          clearBettingSlip={clearBettingSlip}
+          createBettingSlip={createBettingSlip}
+          updateBettingAmount={updateBettingAmount}
+        ></ActiveBettingSlip>
+      ) : (
+        <div className="card">
+          <NavLink end to="/login">
+            <h3>Log in to start betting</h3>
+          </NavLink>
+        </div>
+      )}
     </div>
   );
 }

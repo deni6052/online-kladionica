@@ -1,0 +1,8 @@
+.sport-event-form {
+	margin-top: 1rem;
+}
+
+.sport-event-form .event-form-odds {
+	display: flex;
+	justify-content: space-between;
+}

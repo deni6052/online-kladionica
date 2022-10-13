@@ -10,6 +10,7 @@ const {
   createBettingSlip,
   createBettingSlipOutcome,
   getTotalOdds,
+  getSportEventForSlip,
 } = require("./methods");
 
 module.exports = (router) => {
@@ -34,12 +35,10 @@ module.exports = (router) => {
       const userId = input.user.id;
       const bettingSlip = input.body;
       const { betAmount, events } = bettingSlip;
-      console.log(userId);
       const user = await getOneUser({ id: userId });
       if (user.currentBalance - betAmount < 0) {
         throw apiError({ status: 400, message: "Insufficient funds" });
       }
-      console.log(userId);
 
       const transaction = await db.transaction();
       try {

@@ -4,5 +4,10 @@
 	margin: 0;
 
 	margin-bottom: 1rem;
+	
+}
+
+.betting-slip-item:hover {
+	cursor: pointer;	
 }
 
