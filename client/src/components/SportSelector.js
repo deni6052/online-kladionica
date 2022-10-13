@@ -1,12 +1,12 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import http from "../libs/http";
 import Button from "./shared/Button";
 
 export default function SportSelector({ selectHandler }) {
-  const [selectedSport, setSelectedSport] = React.useState();
-  const [sports, setSports] = React.useState([]);
+  const [selectedSport, setSelectedSport] = useState();
+  const [sports, setSports] = useState([]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const getSports = async () => {
       const { data } = await http.get("/api/sports");
       setSports(data);

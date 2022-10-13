@@ -4,6 +4,7 @@ import TextInput from "../components/shared/TextInput";
 import http from "../libs/http";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+
 export default function Register() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();

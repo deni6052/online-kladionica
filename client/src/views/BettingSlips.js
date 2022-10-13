@@ -4,6 +4,7 @@ import SportEvent from "../components/SportEvent";
 
 import http from "../libs/http";
 import "./BettingSlips.css";
+
 export default function BettingSlips() {
   const [bettingSlips, setBettingSlips] = useState([]);
   const [slipEvents, setSlipEvents] = useState([]);

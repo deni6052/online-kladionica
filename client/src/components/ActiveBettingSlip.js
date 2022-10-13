@@ -3,11 +3,16 @@ import Button from "./shared/Button";
 import TextInput from "./shared/TextInput";
 import "./ActiveBettingSlip.css";
 
-export default function ActiveBettingSlip(props) {
+export default function ActiveBettingSlip({
+  bettingSlip,
+  updateBettingAmount,
+  clearBettingSlip,
+  createBettingSlip,
+}) {
   return (
     <div className="card active-slip">
       <h3>Your betting slip</h3>
-      {props.bettingSlip.events.map(({ selectedEvent, selectedOutcome }, i) => {
+      {bettingSlip.events.map(({ selectedEvent, selectedOutcome }, i) => {
         return (
           <div key={i}>
             <h4>
@@ -20,29 +25,27 @@ export default function ActiveBettingSlip(props) {
         );
       })}
       <h4>Total odds</h4>
-      <p>{props.bettingSlip.totalOdds}</p>
+      <p>{bettingSlip.totalOdds}</p>
 
       <h4>Potential winnings</h4>
-      <p>${props.bettingSlip.potentialWinnings}</p>
+      <p>${bettingSlip.potentialWinnings}</p>
       <TextInput
         label="Betting amount ($)"
-        value={props.bettingSlip.betAmount}
-        onChange={(e) => props.updateBettingAmount(e.target.value)}
+        value={bettingSlip.betAmount}
+        onChange={(e) => updateBettingAmount(e.target.value)}
       />
       <Button
-        disabled={
-          props.bettingSlip.events.length < 1 || props.bettingSlip.betAmount < 1
-        }
+        disabled={bettingSlip.events.length < 1 || bettingSlip.betAmount < 1}
         label="Place the bet!"
         color="secondary"
-        clickHandler={() => props.createBettingSlip()}
+        clickHandler={() => createBettingSlip()}
       />
       <Button
         label="Clear the slip"
         color="primary"
-        clickHandler={() => props.clearBettingSlip()}
+        clickHandler={() => clearBettingSlip()}
       />
-      {props.bettingSlip.error && <p>{props.bettingSlip.error}</p>}
+      {bettingSlip.error && <p>{bettingSlip.error}</p>}
     </div>
   );
 }
