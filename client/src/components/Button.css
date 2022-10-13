@@ -16,8 +16,9 @@ button:hover {
 button:disabled,
 button[disabled]{
 	filter: brightness(0.7);
-
+	cursor:initial;
 }
+
 .button.primary {
 	background-color: var(--primary);
 	color: white;
