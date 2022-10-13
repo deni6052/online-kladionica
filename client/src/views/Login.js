@@ -29,7 +29,6 @@ export default function Login({ setToken }) {
         <TextInput
           label="Email"
           type="email"
-          pattern=".+@globex\.com"
           onChange={(e) => setEmail(e.target.value)}
           required={true}
         ></TextInput>
