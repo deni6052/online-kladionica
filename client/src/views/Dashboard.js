@@ -102,7 +102,9 @@ export default function Dashboard({ onBet, isAuthenticated }) {
     <div className="dashboard">
       <div className="sport-event-list">
         <SportSelector selectHandler={getEvents}></SportSelector>
-        {events.length < 1 && <h3>No events currently active</h3>}
+        {events.length < 1 && (
+          <h3 className="card">No events currently active</h3>
+        )}
         {events.map((event, i) => {
           return (
             <SportEvent

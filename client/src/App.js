@@ -31,9 +31,13 @@ function App() {
   };
 
   const getLoggedInUser = async () => {
-    const { data: user } = await http.get("/api/users/me");
-    setUser(user);
-    setIsAuthenticated(true);
+    try {
+      const { data: user } = await http.get("/api/users/me");
+      setUser(user);
+      setIsAuthenticated(true);
+    } catch (error) {
+      logout();
+    }
   };
 
   const logout = async () => {

@@ -94,8 +94,7 @@ module.exports.updateOneEvent = (update, condition, transaction) => {
   return db("sport_event")
     .update(update)
     .where(condition)
-    .transacting(transaction)
-    .debug();
+    .transacting(transaction);
 };
 
 module.exports.createEventOutcomeOdds = (outcomeOddsData, transaction) => {
