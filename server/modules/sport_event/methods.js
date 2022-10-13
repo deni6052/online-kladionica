@@ -80,12 +80,44 @@ module.exports.getSportEventForSlip = async (bettingSlipId) => {
   );
 };
 
+module.exports.createSportEvent = async (eventData, transaction) => {
+  const createdEvent = (
+    await db("sport_event")
+      .insert(eventData)
+      .returning("*")
+      .transacting(transaction)
+  ).pop();
+
+  return createdEvent;
+};
 module.exports.updateOneEvent = (update, condition, transaction) => {
   return db("sport_event")
     .update(update)
     .where(condition)
     .transacting(transaction)
     .debug();
+};
+
+module.exports.createEventOutcomeOdds = (outcomeOddsData, transaction) => {
+  return db("sport_event_outcome_odds")
+    .insert(outcomeOddsData)
+    .transacting(transaction);
+};
+
+// helper
+function getRnd(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min + 1;
+}
+
+module.exports.getRandomScores = (sportName) => {
+  let scores = [getRnd(0, 5), getRnd(0, 5)];
+
+  // Resolve ties with -1/+1
+  if (scores[0] === scores[1] && sportName === "Tennis") {
+    scores[0] += getRnd(0, 1) ? -1 : 1;
+  }
+
+  return scores;
 };
 
 module.exports.getUnresolvedEvents = () => {
