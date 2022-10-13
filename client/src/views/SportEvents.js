@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Button from "../components/Button";
+import Button from "../components/shared/Button";
 import SportEvent from "../components/SportEvent";
 import SportEventForm from "../components/SportEventForm";
 import SportSelector from "../components/SportSelector";

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Button from "./Button";
-import TextInput from "./TextInput";
+import Button from "./shared/Button";
+import TextInput from "./shared/TextInput";
 import "./ActiveBettingSlip.css";
 export default function ActiveBettingSlip(props) {
   return (

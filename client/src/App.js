@@ -5,7 +5,7 @@ import BettingSlips from "./views/BettingSlips";
 import Login from "./views/Login";
 import SportEvents from "./views/SportEvents";
 
-import Navigation from "./components/Navigation";
+import Navigation from "./components/shared/Navigation";
 import http from "./libs/http";
 import React, { useState } from "react";
 import Register from "./views/Register";

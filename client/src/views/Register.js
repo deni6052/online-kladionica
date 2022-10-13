@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Button from "../components/Button";
-import TextInput from "../components/TextInput";
+import Button from "../components/shared/Button";
+import TextInput from "../components/shared/TextInput";
 import http from "../libs/http";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";

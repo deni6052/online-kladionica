@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import TextInput from "./TextInput";
+import TextInput from "./shared/TextInput";
 import "./SportEventForm.css";
-import Button from "./Button";
+import Button from "./shared/Button";
 import http from "../libs/http";
 
 export default function SportEventForm({ outcomes, sportId }) {

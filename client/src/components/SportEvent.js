@@ -1,6 +1,6 @@
 import React from "react";
-import Button from "./Button";
-import TextInput from "./TextInput";
+import Button from "./shared/Button";
+import TextInput from "./shared/TextInput";
 
 import "./SportEvent.css";
 

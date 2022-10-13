@@ -1,6 +1,6 @@
 import React from "react";
 import http from "../libs/http";
-import Button from "./Button";
+import Button from "./shared/Button";
 
 export default function SportSelector({ selectHandler }) {
   const [selectedSport, setSelectedSport] = React.useState();
