@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useState } from "react";
 import Button from "../components/shared/Button";
 import SportEvent from "../components/SportEvent";
 import SportEventForm from "../components/SportEventForm";
@@ -8,9 +8,9 @@ import "./SportEvents.css";
 import { toast } from "react-toastify";
 
 export default function SportEvents({ onEventsPlayed }) {
-  const [outcomes, setOutcomes] = React.useState([]);
-  const [selectedSport, setSelectedSport] = React.useState();
-  const [previousEvents, setPreviousEvents] = React.useState([]);
+  const [outcomes, setOutcomes] = useState([]);
+  const [selectedSport, setSelectedSport] = useState();
+  const [previousEvents, setPreviousEvents] = useState([]);
 
   const getPossibleOutcomes = async (sportId) => {
     const { data } = await http.get(`/api/sports/${sportId}/sport_outcomes`);

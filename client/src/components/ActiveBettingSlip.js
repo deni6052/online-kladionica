@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import Button from "./shared/Button";
 import TextInput from "./shared/TextInput";
 import "./ActiveBettingSlip.css";
+
 export default function ActiveBettingSlip(props) {
   return (
     <div className="card active-slip">

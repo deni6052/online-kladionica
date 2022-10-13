@@ -8,13 +8,15 @@ export default function BettingSlips() {
   const [bettingSlips, setBettingSlips] = useState([]);
   const [slipEvents, setSlipEvents] = useState([]);
 
-  const getBettingSlips = async () => {
-    const { data } = await http.get("/api/betting_slips/me");
-    setBettingSlips(data);
-    getEventsForSlip(data[0].id);
-  };
-
   useEffect(() => {
+    const getBettingSlips = async () => {
+      const { data } = await http.get("/api/betting_slips/me");
+      setBettingSlips(data);
+      if (data.length) {
+        getEventsForSlip(data[0].id);
+      }
+    };
+
     getBettingSlips();
   }, []);
 
