@@ -5,11 +5,17 @@ import Button from "./Button";
 import http from "../libs/http";
 
 export default function SportEventForm({ outcomes, sportId }) {
-  const [newEvent, setNewEvent] = useState({
-    firstCompetitor: "",
-    secondCompetitor: "",
-    outcomes: [],
-  });
+  const getInitialEvent = (outcomes) => {
+    return {
+      firstCompetitor: "",
+      secondCompetitor: "",
+      sportId,
+      outcomes: outcomes.map((outcome) => {
+        return { ...outcome, odds: 1 };
+      }),
+    };
+  };
+  const [newEvent, setNewEvent] = useState(getInitialEvent(outcomes));
 
   useEffect(() => {
     setNewEvent((prevState) => {
@@ -40,9 +46,10 @@ export default function SportEventForm({ outcomes, sportId }) {
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    http.post("/api/sport_events", newEvent);
+    await http.post("/api/sport_events", newEvent);
+    setNewEvent(getInitialEvent(outcomes));
   };
 
   return (
