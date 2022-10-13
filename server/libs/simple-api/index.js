@@ -40,7 +40,6 @@ module.exports.api = ({
         return res.status(status).send(result);
       } catch (error) {
         if (error.expected) {
-          console.log(error.message);
           return res.status(error.status).send({ message: error.message });
         }
         console.log(error);

@@ -9,7 +9,6 @@ module.exports.validate = (validations) => {
       return next();
     }
 
-    console.log(errors.array());
     return res.status(400).send({
       message: errors
         .array()
