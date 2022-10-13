@@ -1,9 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 
-// const http = axios.create({
-//   baseURL: `http://localhost:4200/`,
-// });
 axios.defaults.baseURL = `http://localhost:4200/`;
 
 axios.interceptors.response.use(
