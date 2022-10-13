@@ -227,7 +227,9 @@ const seedDb = async () => {
 
 async function main() {
   await createDb();
+  console.log("Database successfully created");
   await seedDb();
+  console.log("Database successfully seeded");
   process.exit();
 }
 
